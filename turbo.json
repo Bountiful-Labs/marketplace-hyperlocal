@@ -1,0 +1,41 @@
+{
+  "$schema": "https://turbo.build/json-schema.json",
+  "tasks": {
+    "build": {
+      "description": "Build application",
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", ".next/**"],
+      "cache": true
+    },
+    "dev": {
+      "description": "Start development server",
+      "cache": false,
+      "persistent": true
+    },
+    "lint": {
+      "description": "Run ESLint",
+      "outputs": [],
+      "cache": true
+    },
+    "typecheck": {
+      "description": "Run TypeScript type checking",
+      "outputs": [],
+      "cache": true
+    },
+    "test": {
+      "description": "Run tests",
+      "dependsOn": ["^build"],
+      "outputs": ["coverage/**"],
+      "cache": true
+    },
+    "format": {
+      "description": "Format code with Prettier",
+      "outputs": [],
+      "cache": false
+    },
+    "db:migrate": {
+      "description": "Run database migrations",
+      "cache": false
+    }
+  }
+}

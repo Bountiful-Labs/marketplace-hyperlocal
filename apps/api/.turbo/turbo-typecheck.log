@@ -1,0 +1,21 @@
+
+> api@0.1.0 typecheck /home/botelho/Documents/GitHub/marketplace-hyperlocal/apps/api
+> tsc --noEmit
+
+[96msrc/health/health.controller.ts[0m:[93m3[0m:[93m32[0m - [91merror[0m[90m TS2307: [0mCannot find module '@repo/contracts' or its corresponding type declarations.
+
+[7m3[0m import { HealthResponse } from '@repo/contracts';
+[7m [0m [91m                               ~~~~~~~~~~~~~~~~~[0m
+
+[96msrc/health/health.service.ts[0m:[93m2[0m:[93m32[0m - [91merror[0m[90m TS2307: [0mCannot find module '@repo/contracts' or its corresponding type declarations.
+
+[7m2[0m import { HealthResponse } from '@repo/contracts';
+[7m [0m [91m                               ~~~~~~~~~~~~~~~~~[0m
+
+
+Found 2 errors in 2 files.
+
+Errors  Files
+     1  src/health/health.controller.ts[90m:3[0m
+     1  src/health/health.service.ts[90m:2[0m
+[41m[30m ELIFECYCLE [39m[49m [31mCommand failed with exit code 2.[39m
