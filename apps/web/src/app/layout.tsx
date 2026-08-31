@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
-import './globals.css';
+import { SiteHeader } from './_components/site-header';
+import './globals.scss';
+
 
 export const metadata: Metadata = {
   title: {
@@ -17,6 +19,7 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="pt-BR">
+      <SiteHeader />
       <body>{children}</body>
     </html>
   );
