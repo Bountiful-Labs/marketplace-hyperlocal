@@ -1,13 +1,22 @@
 import type { Metadata } from 'next';
+import type { ReactNode } from 'react';
+import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Marketplace Hyperlocal',
-  description: 'A hyperlocal marketplace connecting local businesses with community members',
+  title: {
+    default: 'Marketplace Hyperlocal',
+    template: '%s | Marketplace Hyperlocal',
+  },
+  description: 'Produtos, serviços e comércios perto de você.',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+interface RootLayoutProps {
+  children: ReactNode;
+}
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <body>{children}</body>
     </html>
   );
