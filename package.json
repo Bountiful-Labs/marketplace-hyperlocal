@@ -1,0 +1,30 @@
+{
+  "name": "marketplace-hyperlocal",
+  "version": "0.1.0",
+  "description": "A hyperlocal marketplace platform connecting local businesses with community members",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20.18.0",
+    "pnpm": ">=9.0.0"
+  },
+  "scripts": {
+    "dev": "turbo run dev --parallel",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "format": "turbo run format && prettier --write .",
+    "format:check": "prettier --check .",
+    "db:up": "docker compose up -d postgres",
+    "db:down": "docker compose down",
+    "db:migrate": "turbo run db:migrate --filter=api"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "prettier": "^3.3.3",
+    "turbo": "^2.0.14"
+  },
+  "packageManager": "pnpm@9.4.0"
+}
