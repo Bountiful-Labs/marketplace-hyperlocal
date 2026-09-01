@@ -4,9 +4,13 @@
   "description": "A hyperlocal marketplace platform connecting local businesses with community members",
   "private": true,
   "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "engines": {
     "node": ">=20.18.0",
-    "pnpm": ">=9.0.0"
+    "npm": ">=10.0.0"
   },
   "scripts": {
     "dev": "turbo run dev --parallel",
@@ -21,10 +25,10 @@
     "db:migrate": "turbo run db:migrate --filter=api"
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*",
     "prettier": "^3.3.3",
     "turbo": "^2.0.14"
   },
-  "packageManager": "pnpm@9.4.0"
+  "packageManager": "npm@11.13.0"
 }

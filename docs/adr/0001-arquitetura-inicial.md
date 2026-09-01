@@ -14,9 +14,9 @@ We are bootstrapping a new hyperlocal marketplace platform that connects local b
 
 We use TypeScript across the entire stack (backend, frontend, shared packages) to ensure type safety, improve developer experience, and reduce runtime errors.
 
-### 2. Monorepo with pnpm Workspaces
+### 2. Monorepo with npm Workspaces
 
-We use a monorepo structure managed by pnpm workspaces with Turborepo for task orchestration. This allows:
+We use a monorepo structure managed by npm Workspaces with Turborepo for task orchestration. This allows:
 
 - Shared code across applications via workspace packages
 - Single dependency tree reduces conflicts
@@ -73,7 +73,7 @@ We use Docker Compose for local development to:
 
 ### 8. Modular Monolith, Not Microservices
 
-We start with a modular monolith (single codebase, multiple apps in pnpm workspaces) instead of microservices because:
+We start with a modular monolith (single codebase, multiple apps in npm workspaces) instead of microservices because:
 
 - Simpler to reason about and debug
 - Easier data consistency across features
@@ -162,5 +162,5 @@ None yet.
 - [Next.js App Router Documentation](https://nextjs.org/docs/app)
 - [NestJS Documentation](https://docs.nestjs.com/)
 - [Prisma Documentation](https://www.prisma.io/docs/)
-- [pnpm Workspaces](https://pnpm.io/workspaces)
+- [npm Workspaces](https://docs.npmjs.com/cli/using-npm/workspaces)
 - [Turborepo Documentation](https://turbo.build/)
