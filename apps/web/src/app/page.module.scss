@@ -2,11 +2,7 @@
   overflow: hidden;
   border-bottom: 1px solid var(--border);
   background:
-    radial-gradient(
-      circle at 85% 10%,
-      rgb(244 166 65 / 28%),
-      transparent 25rem
-    ),
+    radial-gradient(circle at 85% 10%, rgb(244 166 65 / 28%), transparent 25rem),
     linear-gradient(145deg, #f8f7f2, #e4f1e9);
 }
 
@@ -92,7 +88,7 @@
   li::before {
     margin-right: 0.4rem;
     color: var(--primary);
-    content: "✓";
+    content: '✓';
     font-weight: 900;
   }
 }

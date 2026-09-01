@@ -3,7 +3,6 @@ import type { ReactNode } from 'react';
 import { SiteHeader } from './_components/site-header';
 import './globals.scss';
 
-
 export const metadata: Metadata = {
   title: {
     default: 'Marketplace Hyperlocal',

@@ -1,10 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import {
-  formatPrice,
-  normalizeSearch,
-  products,
-} from '../_data/products';
+import { formatPrice, normalizeSearch, products } from '../_data/products';
 import styles from './page.module.scss';
 
 export const metadata: Metadata = {
@@ -18,17 +14,13 @@ interface SearchPageProps {
   }>;
 }
 
-export default async function SearchPage({
-  searchParams,
-}: SearchPageProps) {
+export default async function SearchPage({ searchParams }: SearchPageProps) {
   const params = await searchParams;
   const query = typeof params.q === 'string' ? params.q : '';
   const normalizedQuery = normalizeSearch(query);
 
   const results = products.filter((product) => {
-    const searchableText = normalizeSearch(
-      `${product.name} ${product.seller} ${product.category}`,
-    );
+    const searchableText = normalizeSearch(`${product.name} ${product.seller} ${product.category}`);
 
     return !normalizedQuery || searchableText.includes(normalizedQuery);
   });
@@ -58,9 +50,7 @@ export default async function SearchPage({
 
       <section aria-labelledby="results-title">
         <div className={styles.resultsHeader}>
-          <h2 id="results-title">
-            {query ? `Resultados para “${query}”` : 'Todos os produtos'}
-          </h2>
+          <h2 id="results-title">{query ? `Resultados para “${query}”` : 'Todos os produtos'}</h2>
 
           <span>
             {results.length} {results.length === 1 ? 'resultado' : 'resultados'}
