@@ -24,14 +24,14 @@ Marketplace Hyperlocal is a platform that enables:
 - Community members to discover and support local offerings
 - Direct connections between merchants and customers
 
-This repository contains a monorepo structure using pnpm workspaces and Turborepo to manage multiple applications (API, Web) and shared packages.
+This repository contains a monorepo structure using npm Workspaces and Turborepo to manage multiple applications (API, Web) and shared packages.
 
 ## 🏗️ Architecture
 
 ### Tech Stack
 
 - **Runtime**: Node.js 20 LTS
-- **Monorepo**: pnpm workspaces + Turborepo
+- **Monorepo**: npm Workspaces + Turborepo
 - **Frontend**: Next.js (App Router) + React
 - **Backend**: NestJS + Fastify
 - **Database**: PostgreSQL 17
@@ -76,7 +76,7 @@ For detailed architecture decisions, see [ADR 0001](./docs/adr/0001-arquitetura-
 ## 📋 Prerequisites
 
 - **Node.js**: 20.18.0 LTS (specified in [.nvmrc](.nvmrc))
-- **pnpm**: 9.4.0 or later
+- **npm**: 10 or later
 - **Docker & Docker Compose**: For running PostgreSQL locally
 - **Git**: For version control
 
@@ -97,20 +97,13 @@ nvm use
 # or manually: nvm use 20.18.0
 ```
 
-### 3. Install pnpm
+### 3. Install Dependencies
 
 ```bash
-npm install -g pnpm@9.4.0
-# or: corepack enable pnpm
+npm ci
 ```
 
-### 4. Install Dependencies
-
-```bash
-pnpm install --frozen-lockfile
-```
-
-### 5. Set Up Environment Variables
+### 4. Set Up Environment Variables
 
 ```bash
 cp .env.example .env.local
@@ -142,7 +135,7 @@ NEXT_PUBLIC_API_URL=http://localhost:3001
 
 ```bash
 # Start PostgreSQL in Docker
-pnpm db:up
+npm run db:up
 
 # Wait a few seconds for the database to be ready
 # You can verify with: docker compose ps
@@ -153,7 +146,7 @@ pnpm db:up
 Start all applications in parallel:
 
 ```bash
-pnpm dev
+npm run dev
 ```
 
 This starts:
@@ -173,67 +166,66 @@ Start specific applications:
 
 ```bash
 # Start only the API
-pnpm dev --filter=api
+npm run dev --workspace=api
 
 # Start only the web app
-pnpm dev --filter=web
+npm run dev --workspace=web
 ```
 
 ### Production Build
 
 ```bash
-pnpm build
+npm run build
 ```
 
 ### Start Production Build
 
 ```bash
-pnpm start
+npm run start --workspaces --if-present
 ```
 
 ### Stop PostgreSQL
 
 ```bash
-pnpm db:down
+npm run db:down
 ```
 
 ## 📚 Available Commands
 
 ### Root Level Scripts
 
-| Command             | Description                                |
-| ------------------- | ------------------------------------------ |
-| `pnpm dev`          | Start all applications in development mode |
-| `pnpm build`        | Build all applications and packages        |
-| `pnpm lint`         | Run ESLint across the monorepo             |
-| `pnpm typecheck`    | Run TypeScript type checking               |
-| `pnpm test`         | Run all tests                              |
-| `pnpm format`       | Format code with Prettier                  |
-| `pnpm format:check` | Check code formatting without changes      |
-| `pnpm db:up`        | Start PostgreSQL with Docker Compose       |
-| `pnpm db:down`      | Stop PostgreSQL                            |
-| `pnpm db:migrate`   | Run Prisma migrations                      |
+| Command                | Description                                |
+| ---------------------- | ------------------------------------------ |
+| `npm run dev`          | Start all applications in development mode |
+| `npm run build`        | Build all applications and packages        |
+| `npm run lint`         | Run ESLint across the monorepo             |
+| `npm run typecheck`    | Run TypeScript type checking               |
+| `npm test`             | Run all tests                              |
+| `npm run format`       | Format code with Prettier                  |
+| `npm run format:check` | Check code formatting without changes      |
+| `npm run db:up`        | Start PostgreSQL with Docker Compose       |
+| `npm run db:down`      | Stop PostgreSQL                            |
+| `npm run db:migrate`   | Run Prisma migrations                      |
 
 ### API-Specific Commands (apps/api)
 
 ```bash
-pnpm --filter=api dev          # Development server
-pnpm --filter=api build        # Build for production
-pnpm --filter=api start        # Start production server
-pnpm --filter=api lint         # Lint code
-pnpm --filter=api test         # Run tests
-pnpm --filter=api test:cov     # Run tests with coverage
-pnpm --filter=api db:migrate   # Run database migrations
+npm run dev --workspace=api          # Development server
+npm run build --workspace=api        # Build for production
+npm run start --workspace=api        # Start production server
+npm run lint --workspace=api         # Lint code
+npm test --workspace=api             # Run tests
+npm run test:cov --workspace=api     # Run tests with coverage
+npm run db:migrate --workspace=api   # Run database migrations
 ```
 
 ### Web-Specific Commands (apps/web)
 
 ```bash
-pnpm --filter=web dev          # Development server
-pnpm --filter=web build        # Build for production
-pnpm --filter=web start        # Start production server
-pnpm --filter=web lint         # Lint code
-pnpm --filter=web test         # Run tests
+npm run dev --workspace=web          # Development server
+npm run build --workspace=web        # Build for production
+npm run start --workspace=web        # Start production server
+npm run lint --workspace=web         # Lint code
 ```
 
 ## 📁 Project Structure
@@ -262,7 +254,7 @@ marketplace-hyperlocal/
 │       │       └── layout.tsx          # Root layout
 │       ├── package.json
 │       ├── tsconfig.json
-│       └── next.config.js
+│       └── next.config.ts
 ├── packages/
 │   ├── contracts/                      # Shared types & interfaces
 │   │   └── src/
@@ -285,7 +277,7 @@ marketplace-hyperlocal/
 ├── .prettierrc                         # Prettier configuration
 ├── docker-compose.yml                  # Local PostgreSQL setup
 ├── package.json                        # Root package configuration
-├── pnpm-workspace.yaml                 # Workspace configuration
+├── package-lock.json                   # npm dependency lockfile
 ├── turbo.json                          # Turborepo configuration
 └── README.md                           # This file
 ```
@@ -362,16 +354,16 @@ Before committing:
 
 ```bash
 # Format code
-pnpm format
+npm run format
 
 # Check linting
-pnpm lint
+npm run lint
 
 # Run type checking
-pnpm typecheck
+npm run typecheck
 
 # Run tests
-pnpm test
+npm test
 ```
 
 ### Pull Request Guidelines
@@ -410,15 +402,15 @@ See [ADR 0001](./docs/adr/0001-arquitetura-inicial.md#decisions-not-yet-made-fut
 
 ### "postgres connection refused"
 
-- Ensure Docker Compose is running: `pnpm db:up`
+- Ensure Docker Compose is running: `npm run db:up`
 - Check PostgreSQL is healthy: `docker compose ps`
 - Verify DATABASE_URL in `.env.local`
 
 ### "Module not found @repo/*"
 
-- Run `pnpm install` again
-- Check pnpm-workspace.yaml for correct package paths
-- Clear cache: `rm -rf node_modules .pnpm-store`
+- Run `npm install` again
+- Check the root `workspaces` field in `package.json`
+- Remove `node_modules` and run `npm ci` again
 
 ### Port already in use
 
@@ -428,7 +420,7 @@ See [ADR 0001](./docs/adr/0001-arquitetura-inicial.md#decisions-not-yet-made-fut
 ### Type errors in IDE
 
 - Restart TypeScript server (Cmd/Ctrl + Shift + P → "TypeScript: Restart TS Server")
-- Ensure `pnpm install` completed successfully
+- Ensure `npm ci` completed successfully
 
 ## 📝 License
 
