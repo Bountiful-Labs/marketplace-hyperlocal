@@ -6,6 +6,9 @@ export interface Product {
   price: number;
   distance: string;
   symbol: string;
+
+  description: string;
+  availability: string;
 }
 
 export const products: Product[] = [
@@ -17,6 +20,9 @@ export const products: Product[] = [
     price: 42.9,
     distance: '800 m',
     symbol: '🥕',
+    description:
+      'Uma seleção de legumes e verduras frescos produzidos por agricultores locais.',
+    availability: 'Retirada disponível hoje',
   },
   {
     id: 'pao-artesanal',
@@ -26,6 +32,9 @@ export const products: Product[] = [
     price: 18,
     distance: '1,2 km',
     symbol: '🍞',
+    description:
+      'Pão artesanal preparado com fermentação natural e ingredientes selecionados.',
+    availability: 'Produção diária sob encomenda',
   },
   {
     id: 'marmita-caseira',
@@ -35,6 +44,8 @@ export const products: Product[] = [
     price: 24.9,
     distance: '650 m',
     symbol: '🍛',
+    description: 'Refeição caseira preparada diariamente com ingredientes frescos.',
+    availability: 'Disponível para retirada no almoço',
   },
   {
     id: 'cafe-especial',
@@ -44,8 +55,15 @@ export const products: Product[] = [
     price: 36,
     distance: '2 km',
     symbol: '☕',
+    description:
+      'Café especial torrado localmente, com aroma intenso e notas de chocolate.',
+    availability: 'Disponível para retirada',
   },
 ];
+
+export function getProductById(id: string): Product | undefined {
+  return products.find((product) => product.id === id);
+}
 
 export function normalizeSearch(value: string): string {
   return value
